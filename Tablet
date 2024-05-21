@@ -1,0 +1,5 @@
+public class Tablet extends Produto {
+    public Tablet(String nome, int quantidadeDisponivel) {
+        super(nome, quantidadeDisponivel);
+    }
+}
