@@ -1,0 +1,98 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class LojaDeEletronicos {
+    public static void main(String[] args) {
+        Iphone iphone13 = new Iphone("Iphone 13", 3);
+        Iphone iphone14 = new Iphone("Iphone 14", 4);
+        Iphone iphone15 = new Iphone("Iphone 15", 3);
+        Samsung samsungS23 = new Samsung("Samsung S23", 2);
+        Samsung samsungS24 = new Samsung("Samsung S24", 3);
+        Tablet tabS9 = new Tablet("Tab S9", 4);
+        Ipad ipadPro = new Ipad("Ipad Pro",4);
+        Ipad ipadMini = new Ipad("Ipad mini", 3);
+
+        Scanner teclado = new Scanner(System.in);
+
+        try {
+            while (true) {
+                System.out.println("\nProdutos disponíveis na loja: ");
+                System.out.println("1. Iphone 13");
+                System.out.println("2. Iphone 14");
+                System.out.println("3. Iphone 15");
+                System.out.println("4. Samsung S23");
+                System.out.println("5. Samsung S24");
+                System.out.println("6. Tab S9");
+                System.out.println("7. Ipad Pro");
+                System.out.println("8. Ipad mini");
+                System.out.println("0. Sair");
+
+                System.out.println("\nDigite o número do produto desejado (ou 0 para sair): ");
+                int opcao = teclado.nextInt();
+
+                if (opcao == 0) {
+                    System.out.println("Obrigado por visitar nossa loja!");
+                    break;
+                }
+
+                System.out.println("Digite a quantidade desejada: ");
+                int quantidadeDesejada = teclado.nextInt();
+
+                Produto produtoSelecionado = null;
+                switch (opcao) {
+                    case 1:
+                        produtoSelecionado = iphone13;
+                        break;
+                    case 2:
+                        produtoSelecionado = iphone14;
+                        break;
+                    case 3:
+                        produtoSelecionado = iphone15;
+                        break;
+                    case 4:
+                        produtoSelecionado = samsungS23;
+                        break;
+                    case 5:
+                        produtoSelecionado = samsungS24;
+                        break;
+                    case 6:
+                        produtoSelecionado = tabS9;
+                        break;
+                    case 7:
+                        produtoSelecionado = ipadPro;
+                        break;
+                    case 8:
+                        produtoSelecionado = ipadMini;
+                        break;
+                    default:
+                        System.out.println("Opção inválida. Tente novamente.");
+                        continue; 
+                }
+
+                if (produtoSelecionado != null) {
+                    produtoSelecionado.vender(quantidadeDesejada);
+                    System.out.println("----------------------------------------------------------------------------------------------");
+                    if (quantidadeDesejada <= produtoSelecionado.getQuantidadeDisponivel()) {
+                        System.out.println("A quantidade solicitada está disponível para retirada!");
+                    } else {
+                        System.out.println("Desculpe, mas a quantidade solicitada não está disponível em estoque.");
+                    }
+                    System.out.println("Produtos restantes em estoque:");
+                    System.out.println("Iphone 13: " + iphone13.getQuantidadeDisponivel());
+                    System.out.println("Iphone 14: " + iphone14.getQuantidadeDisponivel());
+                    System.out.println("Iphone 15: " + iphone15.getQuantidadeDisponivel());
+                    System.out.println("Samsung S23: " + samsungS23.getQuantidadeDisponivel());
+                    System.out.println("Samsung S24: " + samsungS24.getQuantidadeDisponivel());
+                    System.out.println("Tab S9: " + tabS9.getQuantidadeDisponivel());
+                    System.out.println("Ipad Pro: " + ipadPro.getQuantidadeDisponivel());
+                    System.out.println("Ipad Mini:" + ipadMini.getQuantidadeDisponivel());
+                    System.out.println("----------------------------------------------------------------------------------------------");
+                }
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Entrada inválida. Por favor, insira um número válido.");
+        } finally {
+            teclado.close(); 
+        }
+    }
+}
