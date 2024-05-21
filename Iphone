@@ -1,0 +1,5 @@
+public class Iphone extends Produto {
+    public Iphone(String nome, int quantidadeDisponivel) {
+        super(nome, quantidadeDisponivel);
+    }
+}
